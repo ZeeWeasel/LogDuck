@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://0w4x3qq4g1w6"]
+
+[ext_resource type="Script" path="res://test_scene.gd" id="1_nkv5u"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nkv5u")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Button Warning" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Warning"
+
+[node name="Button Error" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Error"
+
+[node name="Button Debug" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Debug"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Debug Message"
+placeholder_text = "Message..."
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Boolean Argument"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button Warning" to="." method="_on_button_warning_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button Error" to="." method="_on_button_error_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button Debug" to="." method="_on_button_debug_pressed"]

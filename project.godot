@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="LogDuck"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+run/main_scene="res://test_scene.tscn"
+config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+LogDuck="*res://addons/LogDuck/LogDuck.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/LogDuck/plugin.cfg")
 
 [rendering]
 

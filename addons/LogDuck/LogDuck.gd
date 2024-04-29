@@ -249,7 +249,7 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 	
 	var args_original : Array[Variant] = [arg1, arg2, arg3, arg4, arg5, arg6]
 	
-	if msg is not String:
+	if not msg is String:
 		args_original.push_front(msg)
 	else:
 		_message += msg
@@ -273,7 +273,7 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 		SeperatorType.PIPE:
 			seperator = " | "
 	
-	for arg_string : String in args_processed:
+	for arg_string in args_processed:
 		_arguments += seperator + arg_string
 	
 	var msg_plain 

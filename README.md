@@ -35,7 +35,7 @@
 
 ## Installation
 
-* Download the .zip file and extract the LogDuck folder into your addons folder in your Godot Project.<br><br>At the top of LogDuck.gd are the settings to change how you'd like LogDuck to behave and how to format it. Every entry has a short explanation what it does. By default LogDuck will push warnings and errors automatically into the Debugger and rich output is enabled. 
+* Download the .zip file and extract the LogDuck folder into your addons folder in your Godot Project.<br><br>Inside of LogDuckSettings.gd are all settings to customize how you'd like LogDuck to behave. Every entry has a short explanation what it does. By default LogDuck will push warnings and errors automatically into the Debugger and rich output is enabled. 
 
 * Alternatively, you can take the LogDuck.gd script and drag it into your project, and add it as an autoloaded script. 
 Make sure to set it as high as possible in the Load Order, so it can be ready for other autoloaded scripts.
@@ -54,11 +54,28 @@ By default, LogDuck will output anything sent to LogDuck with d() w() and e() in
 
 If you need help with the setup, I will try my best to help out on the [Discord server](https://discord.gg/XSWkS2fWJc). If LogDuck is useful for you, please give me a shout on [Twitter](https://twitter.com/zee_weasel)!
 
-<br>
+<br><br>
+
+## Current Features
+
+- Custom rich-text output customization for the console
+- Auto-detects names for Autoloaded and other GD scripts with class names
+- Function to print system specs to console
+- 3 Logging Levels: Debug, Warning, Error; toggleable
+- Rich text console formatting fully customizable with BBCode
+- Logging functions handle up to 6 arguments (7 if the first isn't a String)
+- Toggle for last or full stack frame output in console per log level
+- Console format customizable with placeholders for prefix, class, message/arguments
+- Stack frame detail formats customizable as single line or full details
+- Warnings and errors pushable to Godot debugger (Editor only)
+- Option to pause game on logged errors (Editor/Debug only)
+- Option to block BBCode parsing in arguments, for outputs like Rich Text Labels
 
 ## Planned Features
 
 - Logging to files (Per Session / Continuing)
+- Crash detection for previous session
+- Output of system specs
 - Output of images into the output when in print_rich mode
 - Being fully compatible with C# scripts
 - Useful functions like printing system specs to console

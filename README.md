@@ -11,11 +11,8 @@
 
 
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <a href="https://github.com/ZeeWeasel/LogDuck">
-    <img src="images/logo.png" alt="Logo" width="160" height="160">
-  </a>
+    <img src="icon.svg" alt="Logo" width="160" height="160">
 
 <h3 align="center">LogDuck for GodotEngine</h3>
 

@@ -52,7 +52,7 @@ Currently LogDuck supports Godot 4.0.1+ with GDScript. I have yet to look into m
 
 By default, LogDuck will output anything sent to LogDuck with d() w() and e() into the output / console, errors and warnings also into the Debugger if you are in the Editor. LogDuck, however, will **not** automatically catch any output sent to print(), printerr() or print_rich() calls. A careful Search and Replace of these functions with LogDuck.d, usually fixes this quickly.
 
-If you need help with the setup, I will try my best to help out on the [Discord server](https://discord.gg/XSWkS2fWJc). If LogDuck is useful for you, please give me a shout on [Twitter](https://twitter.com/ZeeWeasel)!
+If you need help with the setup, I will try my best to help out on the [Discord server](https://discord.gg/XSWkS2fWJc). If LogDuck is useful for you, please give me a shout on [Twitter](https://twitter.com/zee_weasel)!
 
 <br>
 
@@ -93,5 +93,5 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-[Follow @zee_weasel on Twitter](https://twitter.com/ZeeWeasel)
-[Join Discord Server](https://twitter.com/ZeeWeasel)
+[Follow @zee_weasel on Twitter](https://twitter.com/zee_weasel)<br>
+[Join Discord Server]((https://discord.gg/XSWkS2fWJc))

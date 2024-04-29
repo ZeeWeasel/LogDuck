@@ -12,7 +12,7 @@
 
 <!-- PROJECT LOGO -->
 <div align="center">
-    <img src="icon.svg" alt="Logo" width="160" height="160">
+    <img src="https://github.com/ZeeWeasel/LogDuck/blob/main/images/icon.png?raw=true" alt="Logo" width="240" height="240">
 
 <h3 align="center">LogDuck for GodotEngine</h3>
 

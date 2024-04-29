@@ -15,3 +15,4 @@ mono_crash.*.json
 .directory
 .DS_Store
 *~
+images/icon.png.import

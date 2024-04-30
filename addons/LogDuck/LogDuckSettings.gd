@@ -113,6 +113,19 @@ var rich_format_error = "[color=red]%s%s %s[/color]" % [rich_prefix_error, rich_
 ## Outputs some of the internal workings into the log
 var verbose := true
 
+
+## Print an instance number at the start of the debug messages? 
+## This is particularly handy when you are testing multiplayer and have multiple
+## instances print debug information into the output
+var show_instance_number : bool = false
+
+var instance_number_format_plain = "[%s] "
+var instance_number_format_rich = "[color=%s][%s][/color] "
+
+## Colors for the instance number, last entry for any instance larger than 4
+var instance_number_rich_colors : Array[String] = ["#4287f5", "#25d911", "#e6a210", "#10e6df", "#ffffff"]
+
+
 ####################################
 ## Nothing to set below this line ##
 ####################################

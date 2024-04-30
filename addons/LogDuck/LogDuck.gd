@@ -1,5 +1,5 @@
 extends LogDuckSettings
-const VERSION = "v0.7.1"
+const VERSION = "v0.8.0"
 
 ## Use LogDuck.d(), .e(), or .w() for logging debug, error, or warning messages.
 ## Supports up to 6 arguments (or 7, if not starting with a string message).
@@ -18,13 +18,14 @@ const VERSION = "v0.7.1"
 ## [/codeblock]
 var class_name_dict : Dictionary
 
-
 func _enter_tree() -> void:
 	# We are trying to fill the name dictionary as early as possible
 	class_name_dict = get_singletons()
-	
 
 func _ready() -> void:
+	if show_instance_number:
+		get_instance_number()
+		
 	if verbose: d('LogDuck %s ready to go! 🦆' % VERSION)
 
 
@@ -193,6 +194,24 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 	if show_stack_frame_debug or show_stack_frame_warning or show_stack_frame_error:
 		stack_frame_plain = console_format_stack_frame % [frame[0],frame[1],frame[2]]
 		stack_frame_rich = rich_console_format_stack_frame % [frame[0],frame[1],frame[2]]
+		
+	# Instance
+		
+	if show_instance_number and _instance_num>-1:
+		
+		var color_instance : String
+		
+		if _instance_num < instance_number_rich_colors.size():
+			color_instance = instance_number_rich_colors[_instance_num]
+		else:
+			color_instance = instance_number_rich_colors[5]
+		
+		var instance_string_plain = instance_number_format_plain % str(_instance_num)
+		var instance_string_rich = instance_number_format_rich % [color_instance, str(_instance_num)]
+		
+		msg_plain = instance_string_plain + msg_plain
+		msg_rich = instance_string_rich + msg_rich
+
 
 	output_messages(level, msg_plain, msg_rich, full_stack_rich, stack_frame_rich, full_stack_plain, stack_frame_plain)
 
@@ -271,8 +290,6 @@ func remove_bbcode(_text):
 	var text_without_tags = regex.sub(_text, "", true)
 	return text_without_tags
 
-#endregion
-
 
 # Thanks to me2beats https://github.com/godotengine/godot-proposals/issues/3705
 static func get_singletons() -> Dictionary:
@@ -296,6 +313,26 @@ static func get_singletons() -> Dictionary:
 		singletons[key] = val
 		
 	return singletons
-	
+
+
+var _instance_num := -1
+var _instance_socket: TCPServer 
+
+# Thanks to https://gist.github.com/CrankyBunny/71316e7af809d7d4cf5ec6e2369a30b9
+func get_instance_number():
+	if OS.is_debug_build():
+		_instance_socket = TCPServer.new()
+		for n in range(0,4):
+			if _instance_socket.listen(5000 + n) == OK:
+				_instance_num = n
+				break
+
+		if _instance_num < 0:
+			LogDuck.e("Unable to determine instance number. Seems like all TCP ports are in use")
+			return
+			
+		LogDuck.d("We are instance number ", _instance_num+1)
+		
+
 #endregion
 

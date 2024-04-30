@@ -111,4 +111,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 [Follow @zee_weasel on Twitter](https://twitter.com/zee_weasel)<br>
-[Join Discord Server]((https://discord.gg/XSWkS2fWJc))
+[Join Discord Server](https://discord.gg/XSWkS2fWJc)

@@ -151,18 +151,18 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 			else:
 				args_processed.append(argument_to_string(arg))
 	
-	var seperator : String
+	var separator : String
 	
-	match seperator_type:
-		SeperatorType.SPACE:
-			seperator = " "
-		SeperatorType.COMMA:
-			seperator = ", "
-		SeperatorType.PIPE:
-			seperator = " | "
+	match separator_type:
+		SeparatorType.SPACE:
+			separator = " "
+		SeparatorType.COMMA:
+			separator = ", "
+		SeparatorType.PIPE:
+			separator = " | "
 	
 	for arg_string in args_processed:
-		_arguments += seperator + arg_string
+		_arguments += separator + arg_string
 	
 	var msg_plain : String
 	var msg_rich : String

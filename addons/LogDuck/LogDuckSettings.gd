@@ -69,8 +69,8 @@ var throw_exception_on_error := false
 #var SHOW_TIME : bool = true
 #var SHOW_SECONDS_AFTER_LAUNCH : bool = true
 
-## Select, which type of seperator to use for the arguments
-var seperator_type : SeperatorType = SeperatorType.PIPE
+## Select, which type of separator to use for the arguments
+var separator_type : SeparatorType = SeparatorType.PIPE
 
 
 
@@ -137,7 +137,7 @@ enum LogLevel {
 	ERROR,
 }
 
-enum SeperatorType {
+enum SeparatorType {
 	SPACE,
 	COMMA,
 	PIPE, # |

@@ -22,6 +22,7 @@ func _enter_tree() -> void:
 	# We are trying to fill the name dictionary as early as possible
 	class_name_dict = get_singletons()
 
+
 func _ready() -> void:
 	if show_instance_number:
 		get_instance_number()
@@ -136,7 +137,7 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 	
 	var args_original : Array[Variant] = [arg1, arg2, arg3, arg4, arg5, arg6]
 	
-	if msg is not String:
+	if not msg is String:
 		args_original.push_front(msg)
 	else:
 		_message += msg
@@ -144,7 +145,7 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 	var args_processed : Array[String]
 	
 	for arg in args_original:
-		if arg:
+		if not arg == null:
 			if arg is Array:
 				args_processed.append_array(array_to_strings(arg))
 			else:
@@ -152,7 +153,7 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 	
 	var seperator : String
 	
-	match seperator:
+	match seperator_type:
 		SeperatorType.SPACE:
 			seperator = " "
 		SeperatorType.COMMA:
@@ -160,13 +161,13 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 		SeperatorType.PIPE:
 			seperator = " | "
 	
-	for arg_string : String in args_processed:
+	for arg_string in args_processed:
 		_arguments += seperator + arg_string
 	
-	var msg_plain 
-	var msg_rich
+	var msg_plain : String
+	var msg_rich : String
 	
-	var _prefix
+	var _prefix : String
 	
 	match level:
 		LogLevel.ERROR:
@@ -176,7 +177,7 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 			_prefix = prefix_warning
 			msg_rich = rich_format_warn % [_prefix, _class, _message, _arguments]
 		LogLevel.DEBUG:
-			_prefix = preface_debug
+			_prefix = prefix_debug
 			msg_rich = rich_format_debug % [_prefix, _class, _message, _arguments]
 	
 	msg_plain = console_output_format % [_prefix, _class, _message, _arguments]

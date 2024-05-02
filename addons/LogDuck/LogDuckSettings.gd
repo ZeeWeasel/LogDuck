@@ -26,11 +26,11 @@ var show_full_stack_error = false
 
 
 ## The text-prefix to be added to the beginning of Error messages
-var prefix_error = "[ERROR] "
+var prefix_error = "[ERROR]"
 ## The text-prefix to be added to the beginning of Warning messages
-var prefix_warning = "[WARNING] "
+var prefix_warning = "[WARNING]"
 ## The text-prefix to be added to the beginning of Debug messages
-var preface_debug = ""
+var prefix_debug = ""
 
 
 ## The output format of (plain) console messages
@@ -70,7 +70,7 @@ var throw_exception_on_error := false
 #var SHOW_SECONDS_AFTER_LAUNCH : bool = true
 
 ## Select, which type of seperator to use for the arguments
-var seperator : SeperatorType = SeperatorType.COMMA
+var seperator_type : SeperatorType = SeperatorType.PIPE
 
 
 
@@ -93,22 +93,22 @@ var rich_console_format_stack_frame = "[i]%s:%s -> %s[/i]"
 var rich_console_format_full_stack = "[i]%s[/i]"
 
 # (1) Prefix (see above) (2) Class Name
-var rich_prefix_error = "[b]%s[/b] [b](%s)[/b] " # Uses prefix_error for 1st %s
+var rich_prefix_error = "[b]%s[/b] [b](%s)[/b]" # Uses prefix_error for 1st %s
 var rich_msg_error = "%s"
 var rich_args_error = "[i]%s[/i]"
 
-var rich_prefix_warning = "[b]%s[/b] [b](%s)[/b] " # Uses prefix_warning for 1st %s
+var rich_prefix_warning = "[b]%s[/b] [b](%s)[/b]" # Uses prefix_warning for 1st %s
 var rich_msg_warning = "%s"
 var rich_args_warning = "[i]%s[/i]"
 
-var rich_preface_debug = "[b]%s[/b][b](%s)[/b] " # Uses preface_debug for 1st %s
+var rich_prefix_debug = "[b]%s[/b][b](%s)[/b] " # Uses preface_debug for 1st %s
 var rich_msg_debug = "%s"
 var rich_args_debug = "[i]%s[/i]"
 
 # Add BBCode tags that will apply to the entire output message
-var rich_format_debug = "[color=white]%s%s %s[/color]" % [rich_preface_debug, rich_msg_debug, rich_args_debug]
-var rich_format_warn = "[color=yellow]%s%s %s[/color]" % [rich_prefix_warning, rich_msg_warning, rich_args_warning]
-var rich_format_error = "[color=red]%s%s %s[/color]" % [rich_prefix_error, rich_msg_error, rich_args_error]
+var rich_format_debug = "[color=white]%s%s%s[/color]" % [rich_prefix_debug, rich_msg_debug, rich_args_debug]
+var rich_format_warn = "[color=yellow]%s%s%s[/color]" % [rich_prefix_warning, rich_msg_warning, rich_args_warning]
+var rich_format_error = "[color=red]%s%s%s[/color]" % [rich_prefix_error, rich_msg_error, rich_args_error]
 
 ## Outputs some of the internal workings into the log
 var verbose := true

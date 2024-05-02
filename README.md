@@ -40,7 +40,7 @@
 * Alternatively, you can take the LogDuck.gd script and drag it into your project, and add it as an autoloaded script. 
 Make sure to set it as high as possible in the Load Order, so it can be ready for other autoloaded scripts.
 
-**Note: **You can adjust the desired class name either inside of plugin.gd or inside the autoloaded script list, if you prefer a different way to call the logger. _(Log.d() instead of LogDuck.d() for example)_<br><br>
+**Note:** You can adjust the desired class name either inside of plugin.gd or inside the autoloaded script list, if you prefer a different way to call the logger. _(Log.d() instead of LogDuck.d() for example)_<br><br>
 
 ### Compatibility
 
@@ -58,22 +58,21 @@ If you need help with the setup, I will try my best to help out on the [Discord 
 
 ## Current Features
 
-- Custom rich-text output customization for the console
+- Rich and plain text console formatting fully customizable with BBCode
 - Auto-detects names for Autoloaded and other GD scripts with class names
-- Function to print system specs to console
 - 3 Logging Levels: Debug, Warning, Error; toggleable
-- Rich text console formatting fully customizable with BBCode
 - Logging functions handle up to 6 arguments (7 if the first isn't a String)
 - Toggle for last or full stack frame output in console per log level
-- Console format customizable with placeholders for prefix, class, message/arguments
 - Stack frame detail formats customizable as single line or full details
 - Warnings and errors pushable to Godot debugger (Editor only)
 - Option to pause game on logged errors (Editor/Debug only)
-- Option to block BBCode parsing in arguments, for outputs like Rich Text Labels
+- Option to block BBCode parsing in arguments, for outputs like Rich Text Labels / Chats
+- Instance numbering to differentiate logs in the editor output when testing multiple instances
 
 ## Planned Features
 
 - Logging to files (Per Session / Continuing)
+- Function to print system specs to console
 - Crash detection for previous session
 - Output of system specs
 - Output of images into the output when in print_rich mode

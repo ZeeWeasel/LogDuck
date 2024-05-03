@@ -63,9 +63,10 @@ If you need help with the setup, I will try my best to help out on the [Discord 
 - Option to block BBCode parsing in arguments, for outputs like Rich Text Labels / Chats
 - Instance numbering to differentiate logs in the editor output when testing multiple instances
 
-## Planned Features
+## Future Work
 
 - Function to print system specs to console
+- Adjust / Customize LogDuck via Project Settings Menus
 - Crash detection for previous session
 - Log File Handling
 - Output of system specs at startup

@@ -329,10 +329,10 @@ func get_instance_number():
 				break
 
 		if _instance_num < 0:
-			LogDuck.e("Unable to determine instance number. Seems like all TCP ports are in use")
+			e("Unable to determine instance number. Seems like all TCP ports are in use")
 			return
 			
-		LogDuck.d("We are instance number ", _instance_num+1)
+		d("We are instance number ", _instance_num+1)
 		
 
 #endregion

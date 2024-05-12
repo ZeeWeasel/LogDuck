@@ -69,8 +69,8 @@ var throw_exception_on_error := false
 #var SHOW_TIME : bool = true
 #var SHOW_SECONDS_AFTER_LAUNCH : bool = true
 
-## Select, which type of seperator to use for the arguments
-var seperator_type : SeperatorType = SeperatorType.PIPE
+## Select, which type of separator to use for the arguments
+var separator_type : SeparatorType = SeparatorType.PIPE
 
 
 
@@ -93,11 +93,11 @@ var rich_console_format_stack_frame = "[i]%s:%s -> %s[/i]"
 var rich_console_format_full_stack = "[i]%s[/i]"
 
 # (1) Prefix (see above) (2) Class Name
-var rich_prefix_error = "[b]%s[/b] [b](%s)[/b]" # Uses prefix_error for 1st %s
+var rich_prefix_error = "[b]%s[/b] [b](%s)[/b] " # Uses prefix_error for 1st %s
 var rich_msg_error = "%s"
 var rich_args_error = "[i]%s[/i]"
 
-var rich_prefix_warning = "[b]%s[/b] [b](%s)[/b]" # Uses prefix_warning for 1st %s
+var rich_prefix_warning = "[b]%s[/b] [b](%s)[/b] " # Uses prefix_warning for 1st %s
 var rich_msg_warning = "%s"
 var rich_args_warning = "[i]%s[/i]"
 
@@ -137,7 +137,7 @@ enum LogLevel {
 	ERROR,
 }
 
-enum SeperatorType {
+enum SeparatorType {
 	SPACE,
 	COMMA,
 	PIPE, # |

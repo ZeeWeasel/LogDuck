@@ -1,5 +1,5 @@
 extends LogDuckSettings
-const VERSION = "v0.8.0"
+const VERSION = "v0.8.1"
 
 ## Use LogDuck.d(), .e(), or .w() for logging debug, error, or warning messages.
 ## Supports up to 6 arguments (or 7, if not starting with a string message).

@@ -93,11 +93,11 @@ var rich_console_format_stack_frame = "[i]%s:%s -> %s[/i]"
 var rich_console_format_full_stack = "[i]%s[/i]"
 
 # (1) Prefix (see above) (2) Class Name
-var rich_prefix_error = "[b]%s[/b] [b](%s)[/b]" # Uses prefix_error for 1st %s
+var rich_prefix_error = "[b]%s[/b] [b](%s)[/b] " # Uses prefix_error for 1st %s
 var rich_msg_error = "%s"
 var rich_args_error = "[i]%s[/i]"
 
-var rich_prefix_warning = "[b]%s[/b] [b](%s)[/b]" # Uses prefix_warning for 1st %s
+var rich_prefix_warning = "[b]%s[/b] [b](%s)[/b] " # Uses prefix_warning for 1st %s
 var rich_msg_warning = "%s"
 var rich_args_warning = "[i]%s[/i]"
 

@@ -33,6 +33,15 @@ size_flags_vertical = 4
 texture = ExtResource("2_j2qqh")
 expand_mode = 2
 
+[node name="Checkbox Rich Output" type="CheckBox" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Rich Output?"
+
+[node name="Print Specs" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Print System Specs"
+
 [node name="Button Warning" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Warning"
@@ -55,6 +64,7 @@ placeholder_text = "Message..."
 layout_mode = 2
 text = "Boolean Argument"
 
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Print Specs" to="." method="_on_print_specs_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button Warning" to="." method="_on_button_warning_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button Error" to="." method="_on_button_error_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button Debug" to="." method="_on_button_debug_pressed"]

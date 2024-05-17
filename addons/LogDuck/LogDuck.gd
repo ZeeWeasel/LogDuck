@@ -1,5 +1,5 @@
 extends LogDuckSettings
-const VERSION = "v0.8.1"
+const VERSION = "v0.9"
 
 ## Use LogDuck.d(), .e(), or .w() for logging debug, error, or warning messages.
 ## Supports up to 6 arguments (or 7, if not starting with a string message).
@@ -11,19 +11,30 @@ const VERSION = "v0.8.1"
 
 ## The Dictionary holding holding class names with their script path as key
 ## Is tried to be filled automatically by LogDuck, but entries can be manually
-## added in the ready() function or called from the script itself
+## added in the ready() function or called from the script's _ready() function itself
 ## [codeblock]
 ## class_name_dict["res://path_to_script.gd"] = "Class Name"
 ## [/codeblock]
 var class_name_dict: Dictionary
 
+## Holds the current instance number as determined when starting up and 
+## show_instance_number set true
+var instance_num := -1
+
 
 func _enter_tree() -> void:
 	# We are trying to fill the name dictionary as early as possible
-	class_name_dict = get_singletons()
+	class_name_dict = LogDuckUtils.get_singletons()
+	# Set other class names afterwards to overwrite automatic entries
+	class_name_dict["res://addons/LogDuck/scripts/system_specs.gd"] = "System Specs"
 
 
 func _ready() -> void:
+	
+	if show_specs:
+		var specs = LogDuckSystemSpecs.new()
+		specs.output()
+		
 	if show_instance_number:
 		get_instance_number()
 
@@ -82,7 +93,8 @@ func stack_frame(index : int = 3) -> Dictionary:
 
 func argument_to_string(arg) -> String:
 	if escape_bbcode_in_arguments:
-		return escape_bbcode(str(arg))
+		var escaped_str : String = LogDuckUtils.escape_bbcode(str(arg))
+		return escaped_str
 	else:
 		return str(arg)
 
@@ -199,16 +211,16 @@ func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
 
 	# Instance
 
-	if show_instance_number and _instance_num > -1:
+	if show_instance_number and instance_num > -1:
 		var color_instance: String
 
-		if _instance_num < instance_number_rich_colors.size():
-			color_instance = instance_number_rich_colors[_instance_num]
+		if instance_num < instance_number_rich_colors.size():
+			color_instance = instance_number_rich_colors[instance_num]
 		else:
 			color_instance = instance_number_rich_colors[5]
 
-		var instance_string_plain = instance_number_format_plain % str(_instance_num)
-		var instance_string_rich = instance_number_format_rich % [color_instance, str(_instance_num)]
+		var instance_string_plain = instance_number_format_plain % str(instance_num)
+		var instance_string_rich = instance_number_format_rich % [color_instance, str(instance_num)]
 
 		msg_plain = instance_string_plain + msg_plain
 		msg_rich = instance_string_rich + msg_rich
@@ -291,66 +303,21 @@ func register_class_name(_class_name: String) -> void:
 	if verbose:
 		d("Registering class '%s' with path %s" % [path, _class_name])
 	class_name_dict[path] = _class_name
-
-
-#region Helper Functions
-
-
-## Returns escaped BBCode that won't be parsed by RichTextLabel as tags.
-func escape_bbcode(_text):
-	# We only need to replace opening brackets to prevent tags from being parsed.
-	return _text.replace("[", "[lb]")
-
-
-func remove_bbcode(_text):
-	var regex = RegEx.new()
-	regex.compile("\\[.*?\\]")
-	var text_without_tags = regex.sub(_text, "", true)
-	return text_without_tags
-
-
-# Thanks to me2beats https://github.com/godotengine/godot-proposals/issues/3705
-static func get_singletons() -> Dictionary:
-	var singletons := {}
-	var config := ConfigFile.new()
-	var err := config.load("project.godot")
-	if err:
-		push_error("Error when loading project.godot")
-		return singletons
-
-	var autoload := "autoload"
-	if not config.has_section(autoload):
-		return singletons
-
-	for val in config.get_section_keys(autoload):
-		var key: String = config.get_value(autoload, val)
-		key = key.trim_prefix("*")
-		# If an singleton is a scene instead of a gdscript,
-		# we replace the file ending, to possibly catch the
-		# GDScript running on that Singleton
-		key = key.replace(".tscn", ".gd")
-		singletons[key] = val
-
-	return singletons
-
-
-var _instance_num := -1
-var _instance_socket: TCPServer
-
+	
 
 # Thanks to https://gist.github.com/CrankyBunny/71316e7af809d7d4cf5ec6e2369a30b9
 func get_instance_number():
+	var instance_socket: TCPServer
+	
 	if OS.is_debug_build():
-		_instance_socket = TCPServer.new()
+		instance_socket = TCPServer.new()
 		for n in range(0, 4):
-			if _instance_socket.listen(5000 + n) == OK:
-				_instance_num = n
+			if instance_socket.listen(5000 + n) == OK:
+				instance_num = n
 				break
 
-		if _instance_num < 0:
+		if instance_num < 0:
 			e("Unable to determine instance number. Seems like all TCP ports are in use")
 			return
 
-		LogDuck.d("We are instance number ", _instance_num + 1)
-
-#endregion
+		LogDuck.d("We are instance number ", instance_num + 1)

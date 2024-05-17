@@ -92,6 +92,12 @@ var rich_console_format_stack_frame = "[i]%s:%s -> %s[/i]"
 ## Can be useful for chat messages, or if you output RichLabelText content
 var rich_console_format_full_stack = "[i]%s[/i]"
 
+# TODO:
+#func add_header(header):
+	#rtl.append_text("\n[font_size=24][color=#6df]{header}[/color][/font_size]\n\n".format({
+		#header = header,
+	#}))
+
 # (1) Prefix (see above) (2) Class Name
 var rich_prefix_error = "[b]%s[/b] [b](%s)[/b] " # Uses prefix_error for 1st %s
 var rich_msg_error = "%s"
@@ -124,6 +130,36 @@ var instance_number_format_rich = "[color=%s][%s][/color] "
 
 ## Colors for the instance number, last entry for any instance larger than 4
 var instance_number_rich_colors : Array[String] = ["#4287f5", "#25d911", "#e6a210", "#10e6df", "#ffffff"]
+
+
+#################################### NEW:
+
+## Show system specs in console
+var show_specs = true
+## Add headers to each type of hardware specs
+var show_specs_headers = true
+
+## Formatting of system specs (line)
+var specs_format = "%s: %s\n"
+## Formatting of system specs (line) - rich output
+var specs_format_rich = "%s: [i]%s[/i]\n"
+
+## Formatting of system specs headers for each category
+var specs_header_format = "\n%s\n"
+## Formatting of system specs headers for each category - rich output
+var specs_header_format_rich = "\n[b]%s[/b]\n"
+
+
+## TODO: Runtime
+### Display runtime
+#var show_runtime = true
+#
+### Display runtime at the end of the output
+#var runtime_placement := LogPlacement.BEGIN
+#
+### Runtime Format for plain output
+#var format_runtime = "%s"
+#var rich_format_runtime = "[i]%s[/i]"
 
 
 ####################################

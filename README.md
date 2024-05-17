@@ -62,17 +62,16 @@ If you need help with the setup, I will try my best to help out on the [Discord 
 - Option to pause game on logged errors (Editor/Debug only)
 - Option to block BBCode parsing in arguments, for outputs like Rich Text Labels / Chats
 - Instance numbering to differentiate logs in the editor output when testing multiple instances
+- Print system specs to console (automatically at startup or by calling method)
 
 ## Future Work
 
-- Function to print system specs to console
+- Improved documentation (like this README.MD)
 - Adjust / Customize LogDuck via Project Settings Menus
 - Crash detection for previous session
 - Log File Handling
-- Output of system specs at startup
 - Output of images into the output when in print_rich mode
 - Being fully compatible with C# scripts
-- Useful functions like printing system specs to console
 
 See the [open issues](https://github.com/ZeeWeasel/LogDuck/issues) for a full list of proposed features and known issues.
 

@@ -1,5 +1,6 @@
+@tool
 extends LogDuckSettings
-const VERSION = "v0.9"
+const VERSION = "v0.9.1"
 
 ## Use LogDuck.d(), .e(), or .w() for logging debug, error, or warning messages.
 ## Supports up to 6 arguments (or 7, if not starting with a string message).
@@ -100,6 +101,8 @@ func argument_to_string(arg) -> String:
 
 
 func extract_class_name_from_gdscript(path) -> String:
+	if path == null: return "LogDuck" # 
+	
 	var file = FileAccess.open(path, FileAccess.READ)
 	if not file:
 		class_name_dict[path] = "File Open Error"
@@ -131,11 +134,14 @@ func extract_class_name_from_gdscript(path) -> String:
 
 
 func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
-	
-	var frame : Array = [
-			str(stack_frame()['source']),
-			str(stack_frame()['line']),
-			str(stack_frame()['function'])]
+	var frame : Array
+	if not Engine.is_editor_hint():
+		frame = [
+				str(stack_frame()['source']),
+				str(stack_frame()['line']),
+				str(stack_frame()['function'])]
+	else: # Since this is called inside the editor, get_stack() returns []
+		frame = [null,null,null]
 
 	var _class : String
 

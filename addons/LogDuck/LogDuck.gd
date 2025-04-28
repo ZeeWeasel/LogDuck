@@ -89,7 +89,10 @@ func array_to_strings(argument_array: Array) -> Array[String]:
 
 
 func stack_frame(index : int = 3) -> Dictionary:
-	return get_stack()[index]
+	var stack = get_stack()
+	if len(stack) > index:
+		return stack[index]
+	return {'source': null, 'line': null, 'function': null}
 
 
 func argument_to_string(arg) -> String:
@@ -101,7 +104,7 @@ func argument_to_string(arg) -> String:
 
 
 func extract_class_name_from_gdscript(path) -> String:
-	if path == null: return "LogDuck" # 
+	if path == null: return name # 
 	
 	var file = FileAccess.open(path, FileAccess.READ)
 	if not file:
@@ -134,14 +137,8 @@ func extract_class_name_from_gdscript(path) -> String:
 
 
 func _output(level : LogLevel, msg, arg1, arg2, arg3, arg4, arg5, arg6):
-	var frame : Array
-	if not Engine.is_editor_hint():
-		frame = [
-				str(stack_frame()['source']),
-				str(stack_frame()['line']),
-				str(stack_frame()['function'])]
-	else: # Since this is called inside the editor, get_stack() returns []
-		frame = [null,null,null]
+	var s_frame = stack_frame()
+	var frame := [s_frame['source'], s_frame['line'], s_frame['function']]
 
 	var _class : String
 

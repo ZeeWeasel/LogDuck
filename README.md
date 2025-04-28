@@ -28,7 +28,7 @@ A straight-forward logging addon for Godot 4.x to centralize and manage your Deb
 
 ## Installation
 
-* Download the .zip file and extract the LogDuck folder into your addons folder in your Godot Project.<br><br>Inside of LogDuckSettings.gd are all settings to customize how you'd like LogDuck to behave. Every entry has a short explanation what it does. By default LogDuck will push warnings and errors automatically into the Debugger and rich output is enabled. 
+* LogDuck can be installed either: 1) through the Godot AssetLib or 2) manually by download the .zip file and extract the LogDuck folder into your addons folder in your Godot Project. Once you have installed the library, navigate to Project Settings -> Globals and enable the LogDuck plugin checkbox.<br><br>Inside of LogDuckSettings.gd are all settings to customize how you'd like LogDuck to behave. Every entry has a short explanation what it does. By default LogDuck will push warnings and errors automatically into the Debugger and rich output is enabled. 
 
 * Alternatively, you can take the LogDuck.gd script and drag it into your project, and add it as an autoloaded script. 
 Make sure to set it as high as possible in the Load Order, so it can be ready for other autoloaded scripts.
@@ -45,6 +45,12 @@ Currently LogDuck supports Godot 4.0.1+ with GDScript. I have yet to look into m
 ## Using LogDuck
 
 By default, LogDuck will output anything sent to LogDuck with d() w() and e() into the output / console, errors and warnings also into the Debugger if you are in the Editor. LogDuck, however, will **not** automatically catch any output sent to print(), printerr() or print_rich() calls. A careful Search and Replace of these functions with LogDuck.d, usually fixes this quickly.
+
+For example:
+```
+# print("Log this error to the console") <- change this line to the following:
+LogDuck.d("Log this error to the console")
+```
 
 If you need help with the setup, I will try my best to help out on the [Discord server](https://discord.gg/XSWkS2fWJc). If LogDuck is useful for you, please give me a shout on [Twitter](https://twitter.com/zee_weasel)!
 
